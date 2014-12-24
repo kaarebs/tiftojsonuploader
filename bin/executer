@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require "tiftojson"
+if ARGV[0] == ''
+  puts 'please to a path as input'
+else
+  return
+  #executer = TifToJson.new ARGV[0]
+  #executer.generate_json
+end
+
