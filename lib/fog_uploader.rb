@@ -1,16 +1,16 @@
 require 'fog'
 class FogUploader
   attr_reader :service, :directory
-  def initialize directory_name='realtor_pictures'
+  def initialize directory_name='realtor_photos'
     @service = Fog::Storage.new(rackspace)
     @directory = service.directories.select {|d| d.key == directory_name }.first
   end
 
   def rackspace
     {
-      :provider => ENV['provider'],
-      :rackspace_username => ENV['username'],
-      :rackspace_api_key => ENV['apikey'],
+      :provider => ENV['PROVIDER'],
+      :rackspace_username => ENV['SECRET_USERNAME'],
+      :rackspace_api_key => ENV['APIKEY'],
       :rackspace_region => :ord
     }
   end

@@ -1,12 +1,12 @@
-require "fog_uploader"
 require "json"
+require "./lib/fog_uploader"
 class TifToJson
 
   def initialize path
     @path = path
     @tmp_path = "/tmp/#{Time.now.to_i}"
     @result = {}
-    @uploder = FogUploder.new
+    @uploader = FogUploader.new
   end
 
   def generate_json
@@ -38,7 +38,7 @@ class TifToJson
 
   def generate_png_from_tif tifpath
     pngpath = "#{@tmp_path}/#{File.basename(tifpath, '.tif')}.png"
-    `convert \"#{tifpath}\" \"#{pngpath}\"`
+    `convert -quiet \"#{tifpath}\" \"#{pngpath}\"`
     url = @uploader.upload pngpath
     url
   end
